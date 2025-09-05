@@ -1,28 +1,25 @@
-import { Link } from "react-router-dom"
+import { Outlet, Link } from 'react-router-dom'
 
-const Public = () => {
+import Header from './Header';
 
-    const content = (
-        <section className="public">
-            <header>
-                <h1>Welcome to Repair Store!</h1>
-            </header>
-            <main>
-                <p>Located in Beautiful Downtown Foo City, Repair Store provides a trained staff ready to meet your repair needs.</p>
-                <p>&nbsp;</p>
-                <address>
-                    Repair Store<br />
-                    555 Foo Drive<br />
-                    Foo City, CA 12345<br />
-                    <a href="tel:+15555555555">(555) 555-5555</a>
-                </address>
+export default function Layout() {
+    return (
+        <>
+            <nav>
+                <Header />
+            </nav>
+            <div style={{ display: 'flex', gap: 12, minHeight: '100vh' }}>
+        
+            <main style={{
+                flex: 1,
+                minWidth: 0,
+                display: 'grid',          // однорядковий центринг
+                placeItems: 'center',     // = align-items + justify-content
+                padding: 16
+            }}>
+                <Outlet />
             </main>
-            <footer>
-                <Link to="/signIn">Employee Login</Link>
-            </footer>
-        </section>
-
-    )
-    return content
+            </div>
+        </>
+      );
 }
-export default Public

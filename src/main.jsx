@@ -8,16 +8,25 @@ import { Provider } from 'react-redux'
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
+// ⬇️ додано для MUI
+import { StyledEngineProvider, ThemeProvider, CssBaseline } from '@mui/material'
+import theme from './theme/theme'
+
 const root = createRoot(document.getElementById('root'))
 
 root.render(
   <StrictMode>
     <Provider store={store}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/*" element={<App />} />
-        </Routes>
-      </BrowserRouter>
+      <StyledEngineProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/*" element={<App />} />
+            </Routes>
+          </BrowserRouter>
+        </ThemeProvider>
+      </StyledEngineProvider>
     </Provider>
   </StrictMode>
 )
